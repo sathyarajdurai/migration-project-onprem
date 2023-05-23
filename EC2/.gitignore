@@ -2,6 +2,7 @@
 **/.terraform/*
 .terraform.lock.hcl
 .gitignore
+
 # .tfstate files
 *.tfstate
 *.tfstate.*
