@@ -22,4 +22,26 @@ module "vpc" {
   }
 }
 
+
+# resource "aws_network_interface" "db" {
+#   subnet_id       = module.vpc.private_subnets[0]
+#   # private_ips     = ["10.0.0.50"]
+#   # security_groups = [aws_security_group.onprem_database_sg.id]
+#   description = "db-test"
+#   # attachment {
+#   #   instance     = aws_instance.onprem_database_server.id
+#   #   device_index = 0
+#   # }
+# }
+
+# resource "aws_network_interface" "web" {
+#   subnet_id       = module.vpc.public_subnets[0]
+#   # private_ips     = ["10.0.0.50"]
+#   # security_groups = [aws_security_group.onprem_database_sg.id]
+#   description = "web-test"
+#   # attachment {
+#   #   instance     = aws_instance.onprem_database_server.id
+#   #   device_index = 0
+#   # }
+# }
 #[for i, v in ["eu-west-1a", "eu-west-1b"] : cidrsubnet("10.0.16.0/20", 4, i)]

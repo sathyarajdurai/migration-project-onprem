@@ -19,15 +19,15 @@ data "aws_ami" "euwest1_ami" {
 
     filter {
     name   = "name"
-    # values = ["ami-09fd16644beea3565"]
-    values = ["al2023-ami-*"]
+    # values = ["ami-01dd271720c1ba44f"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
     }
     most_recent = true
-    owners = ["137112412989"]
+    owners = ["099720109477"]
 }
 
 data "aws_subnet"  "public_subnet" {
-    availability_zone = "eu-west-1a"
+    # availability_zone = "eu-west-1a"
     filter {
     name   = "tag:Name"
     values = ["subnet-public"]
@@ -37,7 +37,7 @@ data "aws_subnet"  "public_subnet" {
 }
 
 data "aws_subnet"  "database_subnet" {
-    availability_zone = "eu-west-1b"
+    # availability_zone = "eu-west-1a"
     filter {
     name   = "tag:Name"
     values = ["subnet-database"]
@@ -50,3 +50,13 @@ data "aws_vpc" "vpc_id" {
         values = ["onprem-migration-vpc"]
     }
 }
+
+# data "aws_network_interface" "bar" {
+#   description = "db-test"
+# #   vpc_id = data.aws_vpc.vpc_id.id
+# }
+
+# data "aws_network_interface" "web_test" {
+#   description = "web-test"
+# #   vpc_id = data.aws_vpc.vpc_id.id
+# }

@@ -8,7 +8,7 @@ resource "aws_security_group" "onprem_webserver_sg" {
     from_port        = 80
     to_port          = 80
     protocol         = "tcp"
-    cidr_blocks      = [jsondecode(data.aws_secretsmanager_secret_version.by_cidr.secret_string).myaddress1]
+    cidr_blocks      = ["0.0.0.0/0"]
   }
 
   ingress {
@@ -20,7 +20,7 @@ resource "aws_security_group" "onprem_webserver_sg" {
   }
 
   egress {
-    description      = "Allow port 3306"
+    description      = "Allow all port"
     from_port        = 0
     to_port          = 0
     protocol         = "-1"
