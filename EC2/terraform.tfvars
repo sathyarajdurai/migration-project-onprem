@@ -1,1 +1,1 @@
-mysql_root_password = "myseceretpassword"
+mysql_root_password = "password"

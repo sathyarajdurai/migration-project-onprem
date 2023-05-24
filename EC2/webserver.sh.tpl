@@ -30,4 +30,3 @@ systemctl restart apache2
 
 echo "phpMyAdmin installation completed."
 
-ami-01dd271720c1ba44f
