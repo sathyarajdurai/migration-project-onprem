@@ -11,6 +11,7 @@ module "vpc" {
   private_subnets = [for i, v in local.availability-zones : cidrsubnet(local.private_subnet_cidr, 1, i)]
   public_subnets   = [for i, v in local.availability-zones : cidrsubnet(local.public_subnet_cidr, 1, i)]
   # database_subnet_group_name = var.database_subnetgrp_name
+  map_public_ip_on_launch = true
   enable_nat_gateway = true
   #enable_vpn_gateway = true
   single_nat_gateway = true
@@ -22,7 +23,12 @@ module "vpc" {
   }
 }
 
-
+resource "aws_eip" "web_eip" {
+  vpc = true
+  tags = {
+    Name   = "webserver-eip"
+  }
+}
 # resource "aws_network_interface" "db" {
 #   subnet_id       = module.vpc.private_subnets[0]
 #   # private_ips     = ["10.0.0.50"]

@@ -51,6 +51,13 @@ data "aws_vpc" "vpc_id" {
     }
 }
 
+data "aws_eip" "eip"{ 
+    filter {
+    name   = "tag:Name"
+    values = ["webserver-eip"]
+  }
+}
+
 # data "aws_network_interface" "bar" {
 #   description = "db-test"
 # #   vpc_id = data.aws_vpc.vpc_id.id
