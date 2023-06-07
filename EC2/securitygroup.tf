@@ -11,12 +11,29 @@ resource "aws_security_group" "onprem_webserver_sg" {
     cidr_blocks      = ["0.0.0.0/0"]
   }
 
+  # ingress {
+  #   description      = "Allow port 443"
+  #   from_port        = 443
+  #   to_port          = 443
+  #   protocol         = "tcp"
+  #   cidr_blocks      = ["0.0.0.0/0"]
+  # }
+
+  # ingress {
+  #   description      = "Allow port 1500"
+  #   from_port        = 1500
+  #   to_port          = 1500
+  #   protocol         = "tcp"
+  #   cidr_blocks      = ["0.0.0.0/0"]
+  # }
+
   ingress {
     description      = "Allow port 22"
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
-    cidr_blocks      = [jsondecode(data.aws_secretsmanager_secret_version.by_cidr.secret_string).myaddress1]
+    cidr_blocks = ["103.28.246.192/32"]
+    # cidr_blocks      = [jsondecode(data.aws_secretsmanager_secret_version.rds_pass.secret_string).myaddress1]
   }
 
   egress {
@@ -48,12 +65,22 @@ resource "aws_security_group" "onprem_database_sg" {
     # cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # ingress {
+  #   description      = "Allow port 3306"
+  #   from_port        = 3306
+  #   to_port          = 3306
+  #   protocol         = "tcp"
+  #   # cidr_blocks      = ["10.0.26.29/32"]
+  #   cidr_blocks      = [join("/", [data.terraform_remote_state.state1.outputs.ip, "32"])]
+  # }
+
   ingress {
     description      = "Allow port 22"
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
-    cidr_blocks      = [jsondecode(data.aws_secretsmanager_secret_version.by_cidr.secret_string).myaddress1]
+    cidr_blocks = ["103.28.246.192/32"]
+    # cidr_blocks      = [jsondecode(data.aws_secretsmanager_secret_version.rds_pass.secret_string).myaddress1]
   }
 
   egress {

@@ -2,6 +2,7 @@
 **/.terraform/*
 .terraform.lock.hcl
 .gitignore
+.DS_Store
 
 # .tfstate files
 *.tfstate
@@ -17,6 +18,7 @@ crash.*.log
 # to change depending on the environment.
 # *.tfvars
 *.tfvars.json
+
 
 # Ignore override files as they are usually used to override resources locally and so
 # are not checked in
@@ -35,3 +37,4 @@ override.tf.json
 .terraformrc
 terraform.rc
 .infracost
+.DS_Store

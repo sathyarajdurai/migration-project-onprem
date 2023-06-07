@@ -1,6 +1,6 @@
 resource "aws_instance" "onprem_database_server" {
   # checkov:skip=BC_AWS_GENERAL_68: ADD REASON
-  ami           = data.aws_ami.euwest1_ami.id
+  ami           = data.aws_ami.useast1_ami.id
   instance_type = "t2.medium"
   vpc_security_group_ids = [aws_security_group.onprem_database_sg.id]
   key_name = data.aws_key_pair.onprem_key.key_name
@@ -10,6 +10,7 @@ resource "aws_instance" "onprem_database_server" {
   user_data = templatefile("${path.module}/database.sh.tpl",{
     mysql_root_password = var.mysql_root_password
     app_private_ip = aws_network_interface.web.private_ip
+    
   })
   tags = {
     Name = "database-Server"
@@ -33,7 +34,7 @@ resource "aws_instance" "onprem_database_server" {
 # }
 resource "aws_instance" "onprem_web_server" {
   depends_on = [ aws_instance.onprem_database_server]
-  ami           = data.aws_ami.euwest1_ami.id
+  ami           = data.aws_ami.useast1_ami.id
   instance_type = "t3.small"
   # vpc_security_group_ids = [aws_security_group.onprem_webserver_sg.id]
   key_name = data.aws_key_pair.onprem_key.key_name
