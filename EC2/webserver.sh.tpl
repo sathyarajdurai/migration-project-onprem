@@ -29,4 +29,3 @@ phpenmod mysqli
 systemctl restart apache2
 
 echo "phpMyAdmin installation completed."
-

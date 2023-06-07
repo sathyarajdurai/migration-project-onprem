@@ -7,6 +7,7 @@ apt-get install -y debconf-utils
 config_file="/etc/mysql/mysql.conf.d/mysqld.cnf"
 DB_ROOT_PASS="${mysql_root_password}"
 phpmyadmin_server_ip="${app_private_ip}"
+
 bind_address_line="bind-address"
 # Bash script to create database and user
 DB_NAME="customer_db"
